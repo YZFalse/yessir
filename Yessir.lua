@@ -685,7 +685,7 @@ run(function()
 		elseif SelectMode == "Stuck" then
 			return Vector3.new(0.000001, 0, 0.000001)
 		elseif SelectMode == "Water" then
-			return Vector3.new(0,-490,0)
+			return Vector3.new(0,-500,0)
 		elseif SelectMode == "Fling" then
 			return Vector3.new(0, 9e9, 0)
 		end
