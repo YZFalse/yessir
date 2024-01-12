@@ -1,3 +1,4 @@
+local lp = game.Players.LocalPlayer
 local githubRequest = function(str)
 	return game:HttpGet("https://raw.githubusercontent.com/"..str)
 end
