@@ -1055,15 +1055,15 @@ elseif (not identifyexecutor():find("Fluxus")) and (not Whitelist.Normal[HWID.No
 elseif (not identifyexecutor():find("Fluxus")) and (not shared.FrWhitelist) then
 	selfplr:Kick("User is not whitelist.")
 elseif (not identifyexecutor():find("Fluxus")) and shared.FrWhitelist and (not Whitelist.Normal[HWID.Normal]) then
-	selfplr:Kick("Are you trying to bypass?")
+	selfplr:Kick("is broza for real trying to bypass?💀💀💀💀?")
 end
 
 if identifyexecutor():find("Fluxus") and (not shared.Whitelist1) and (not Whitelist.Flux[HWID.Flux]) then
-	selfplr:Kick("Are you trying to bypass?")
+	selfplr:Kick("is broza for real trying to bypass?💀💀💀💀?")
 elseif identifyexecutor():find("Fluxus") and shared.Whitelist1 and Whitelist.Flux[readfile(".hwid")] and (not Whitelist.Flux[HWID.Flux]) then
-	selfplr:Kick("Are you trying to bypass?")
+	selfplr:Kick("is broza for real trying to bypass?💀💀💀💀?")
 elseif (not identifyexecutor():find("Fluxus")) and (not shared.FrWhitelist) and  Whitelist.Normal[HWID.Normal] then
-	selfplr:Kick("Are you trying to bypass?")
+	selfplr:Kick("is broza for real trying to bypass?💀💀💀💀?")
 elseif (not identifyexecutor():find("Fluxus")) and shared.FrWhitelist and (not Whitelist.Normal[HWID.Normal]) then
-	selfplr:Kick("Are you trying to bypass?")
+	selfplr:Kick("is broza for real trying to bypass?💀💀💀💀?")
 end
