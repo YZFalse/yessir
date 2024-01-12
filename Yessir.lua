@@ -1015,11 +1015,11 @@ run(function()
 			},
 			{
 				["name"] = "Version",
-				["value"] = "1.0 Edition"
+				["value"] = "Testing Version"
 			}
 		},
 		["footer"] = {
-			["text"] = "Powered By ???."
+			["text"] = "Powered By Anonymous People."
 		}
 	}
 	SendMessageEMBED(discord_url, embed)
