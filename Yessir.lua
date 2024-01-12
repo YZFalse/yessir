@@ -681,15 +681,15 @@ run(function()
 		if SelectMode == "Drag" then
 			return lplr.Character.HumanoidRootPart.Position
 		elseif SelectMode == "Around" then
-			return Vector3.new(9e999,9e999,9e999)
+			return Vector3.new(9e9,9e9,9e9)
 		elseif SelectMode == "Stuck" then
 			return Vector3.new(0.000001, 0, 0.000001)
 		elseif SelectMode == "Water" then
 			return Vector3.new(0,-500,0)
 		elseif SelectMode == "Fling" then
-			return Vector3.new(0, 9e999, 0)
+			return Vector3.new(0, 9e9, 0)
 		elseif SelectMode == "Eternal Void" then
-			return Vector3.new(0, -9e999, 0)
+			return Vector3.new(0, -9e9, 0)
 		end
 	end
 	AttackExploit:AddToggle("Trex Exploit", false, function(val)
