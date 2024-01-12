@@ -1049,11 +1049,11 @@ if (not identifyexecutor():find("Fluxus")) and Whitelist.Normal[HWID.Normal] the
 	shared.FrWhitelist = true
 	loadscript()
 elseif (not identifyexecutor():find("Fluxus") and not Whitelist.Normal[HWID.Normal]) then
-	selfplr:Kick("User is not whitelist.")
+	selfplr:Kick("User is not whitelisted.")
 elseif (not identifyexecutor():find("Fluxus")) and (not Whitelist.Normal[HWID.Normal]) then
-	selfplr:Kick("User is not whitelist.")
+	selfplr:Kick("User is not whitelisted.")
 elseif (not identifyexecutor():find("Fluxus")) and (not shared.FrWhitelist) then
-	selfplr:Kick("User is not whitelist.")
+	selfplr:Kick("User is not whitelisted.")
 elseif (not identifyexecutor():find("Fluxus")) and shared.FrWhitelist and (not Whitelist.Normal[HWID.Normal]) then
 	selfplr:Kick("is broza for real trying to bypass?💀💀💀💀?")
 end
