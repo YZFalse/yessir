@@ -689,7 +689,7 @@ run(function()
 		elseif SelectMode == "Fling" then
 			return Vector3.new(0, 9e9, 0)
 		elseif SelectMode == "Eternal Void" then
-			return Vector3.new(0, -9e9, 0)
+			return Vector3.new(9e9, -9e9, 9e9)
 		end
 	end
 	AttackExploit:AddToggle("Trex Exploit", false, function(val)
