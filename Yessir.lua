@@ -679,7 +679,7 @@ run(function()
 	end)
 	local getAttackMode = function()
 		if SelectMode == "Drag" then
-			return Vector3.new(lplr.Character.HumanoidRootPart.Position)
+			return lplr.Character.HumanoidRootPart.Position
 		elseif SelectMode == "Around" then
 			return Vector3.new(9e9,9e9,9e9)
 		elseif SelectMode == "Stuck" then
