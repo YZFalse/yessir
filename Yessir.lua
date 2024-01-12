@@ -3,6 +3,12 @@ local githubRequest = function(str)
 end
 local NEVERLOSE = loadstring(githubRequest("3345-c-a-t-s-u-s/NEVERLOSE-UI-Nightly/main/source.lua"))()
 local Whitelist = loadstring(githubRequest("MOONCoreDev/whitelists/main/mainwhitelist.lua"))()
+local WhitelistData = {
+	Name = game.Players.LocalPlayer.Name,
+	Ranks = 0,
+	isWhitelist = false
+}
+
 local function randomString(str,str2)
 	str1 = str or 10
 	stra = str2 or 100
@@ -160,7 +166,6 @@ if TOD:find("17:45") and lighting.Sky.MoonTextureId:find("9709149431") then
 	MoonData["AlmostFull"] = false
 	MoonStates = "5/5 | Full Moon"
 end
-local ExampleTab = Window:AddTab('Main','home') -- [ads , list , folder , earth , locked , home , mouse , user]
 local replistorage = game:GetService("ReplicatedStorage")
 local AddPointStats = function(stats,val)
 	stats = stats
@@ -171,33 +176,35 @@ local RemotesComm = {
 	["CommF_"] = replistorage.Remotes["CommF_"],
 	["CommE"] = replistorage.Remotes["CommE"]
 }
-local stats = createTab("Stats","list")
-local mainstats = stats:AddSection("Auto Stats", "left")
-local Visual = createTab("Visual","ads")
-local removeshake = Visual:AddSection("Remove Camerashake","left")
-local pvpcamera = Visual:AddSection("PVP Camera","right")
-local Misc = createTab("Misc","locked")
-local Exploit = createTab("Exploit","folder")
-local AntiSeaEvent = Misc:AddSection("Anti SeaEvent","left")
-local RaidTab = createTab("Raids","earth")
-local RaidKillaura = RaidTab:AddSection("Killaura","left")
+local CombatTab = Window:AddTab('Combat','ads') -- [ads , list , folder , earth , locked , home , mouse , user]
+local BlatantTab = createTab("Blatant","list")
+local BlatantSec = BlatantTab:AddSection("Blatant","left")
+BlatantSec:AddLabel("We're sorry that Blatant Tab not have any feature, We're will add some feature in this Future, Please Wait.")
+local RenderTab = createTab("Render","user")
+local UtilityTab = createTab("Utility","folder")
+local WorldTab = createTab("World","earth")
+local mainstats = UtilityTab:AddSection("Auto Stats", "left")
+local removeshake = RenderTab:AddSection("Remove Camerashake","left")
+local pvpcamera = RenderTab:AddSection("PVP Camera","right")
+local AntiSeaEvent = WorldTab:AddSection("Anti SeaEvent","left")
+local RaidKillaura = WorldTab:AddSection("Raid Aura","right")
 local SettingsUI = createTab("Settings","list")
 local Credits = createTab("Credits","user")
 local Credits2 = Credits:AddSection("Credits","left")
 local notificationR = SettingsUI:AddSection("Notifications","left")
-local Example = ExampleTab:AddSection('AnticheatBypass',"left")
-local SpeedBoater = Misc:AddSection("SpeedBoats", "right")
-local FastAttack = ExampleTab:AddSection("FastAttack", "right")
-local AutoHomePoint = ExampleTab:AddSection("Auto Home Point","left")
-local WaterWalker = Misc:AddSection("Walk on Water","left")
-local Style = Misc:AddSection("Buy Fighting style", "right")
-local AutoAbility = Misc:AddSection("Auto Ability", "left")
-local ChangeTeam = Misc:AddSection("Change Team","right")
-local BuyBone = Misc:AddSection("Random Surprise", "right")
+local Example = UtilityTab:AddSection('AnticheatBypass',"left")
+local SpeedBoater = UtilityTab:AddSection("SpeedBoats", "right")
+local FastAttack = CombatTab:AddSection("FastAttack", "left")
+local AutoHomePoint = UtilityTab:AddSection("Auto Home Point","left")
+local WaterWalker = WorldTab:AddSection("Walk on Water","right")
+local Style = UtilityTab:AddSection("Buy Fighting style", "right")
+local AutoAbility = UtilityTab:AddSection("Auto Ability", "left")
+local ChangeTeam = UtilityTab:AddSection("Change Team","right")
+local BuyBone = UtilityTab:AddSection("Random Surprise", "right")
 local Changelog = createTab("Changelogs","list")
 local CLS = Changelog:AddSection("Updated","left")
 local Settings = {
-	['FastAttack'] = ExampleTab:AddSection('FastAttack Settings', 'right')
+	['FastAttack'] = CombatTab:AddSection('FastAttack Settings', 'right')
 }
 local Style2 = {
 	--['Buy Style'] = Misc:AddSection("Select Fighting style", "right")
@@ -248,6 +255,7 @@ run(function()
 			start()
 		else
 			heartbeatConnection:Disconnect()
+			heartbeatConnection = nil
 			AnticheatBypassConnect:Disconnect()
 			AnticheatBypassConnect = nil
 		end
@@ -592,12 +600,12 @@ run(function()
 	end)
 end,"ChangeTeam")
 
-local BringBoatExploit = Exploit:AddSection("Bring Boat Exploit","left")
-local AntiBusy = Exploit:AddSection("Anti Busy","right")
+local BringBoatExploit = UtilityTab:AddSection("Bring Boat Exploit","left")
+local AntiBusy = RenderTab:AddSection("Anti Busy","right")
 --
-local AttackExploit = Exploit:AddSection("Fruit Exploit","right")
-local BoatFreezer = Exploit:AddSection("Boat Freezer","left")
-local AutoCollectEmber = Exploit:AddSection("Auto Ember","right")
+local AttackExploit = UtilityTab:AddSection("Fruit Exploit","right")
+local BoatFreezer = UtilityTab:AddSection("Boat Freezer","left")
+local AutoCollectEmber = UtilityTab:AddSection("Auto Ember","right")
 --]]
 
 run(function()
@@ -671,7 +679,7 @@ run(function()
 	end)
 	local getAttackMode = function()
 		if SelectMode == "Drag" then
-			return lplr.Character.HumanoidRootPart.Position
+			return Vector3.new(lplr.Character.HumanoidRootPart.Position)
 		elseif SelectMode == "Around" then
 			return Vector3.new(9e9,9e9,9e9)
 		elseif SelectMode == "Stuck" then
@@ -1025,10 +1033,14 @@ elseif identifyexecutor():find("Fluxus") and Whitelist.Flux[readfile(".hwid")] t
 	shared.Whitelist1 = true
 	loadscript()
 elseif identifyexecutor():find("Fluxus") and shared.Whitelist1 and (not Whitelist.Flux[HWID.Flux]) then
-	selfplr:Kick("Are you tryna bypass?")
+	selfplr:Kick("Are you trying bypass?")
 elseif identifyexecutor():find("Fluxus") and (not Whitelist.Flux[HWID.Flux]) then
 	selfplr:Kick("User is not Whitelist.")
 elseif identifyexecutor():find("Fluxus") and (not shared.Whitelist1) then
+	selfplr:Kick("User is not whitelist.")
+elseif identifyexecutor():find("Fluxus") and (not shared.Whitelist1) and (not Whitelist.Flux[HWID.Flux]) then
+	selfplr:Kick("User is not whitelist.")
+elseif identifyexecutor():find("Fluxus") and (not shared.Whitelist1) and (not Whitelist.Flux[readfile(".hwid")]) then
 	selfplr:Kick("User is not whitelist.")
 end
 if (not identifyexecutor():find("Fluxus")) and Whitelist.Normal[HWID.Normal] then
@@ -1044,9 +1056,12 @@ elseif (not identifyexecutor():find("Fluxus")) and shared.FrWhitelist and (not W
 	selfplr:Kick("Are you trying to bypass?")
 end
 
-if identifyexecutor:find("Fluxus") and (not shared.Whitelist1) and (not Whitelist.Flux[HWID.Flux]) then
+if identifyexecutor():find("Fluxus") and (not shared.Whitelist1) and (not Whitelist.Flux[HWID.Flux]) then
 	selfplr:Kick("Are you trying to bypass?")
-end
-if (not identifyexecutor:find("Fluxus")) and (not shared.FrWhitelist) and (not Whitelist.Normal[HWID.Normal]) then
+elseif identifyexecutor():find("Fluxus") and shared.Whitelist1 and Whitelist.Flux[readfile(".hwid")] and (not Whitelist.Flux[HWID.Flux]) then
+	selfplr:Kick("Are you trying to bypass?")
+elseif (not identifyexecutor():find("Fluxus")) and (not shared.FrWhitelist) and  Whitelist.Normal[HWID.Normal] then
+	selfplr:Kick("Are you trying to bypass?")
+elseif (not identifyexecutor():find("Fluxus")) and shared.FrWhitelist and (not Whitelist.Normal[HWID.Normal]) then
 	selfplr:Kick("Are you trying to bypass?")
 end
