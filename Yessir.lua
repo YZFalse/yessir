@@ -179,7 +179,7 @@ local RemotesComm = {
 local CombatTab = Window:AddTab('Combat','ads') -- [ads , list , folder , earth , locked , home , mouse , user]
 local BlatantTab = createTab("Blatant","list")
 local BlatantSec = BlatantTab:AddSection("Blatant","left")
-BlatantSec:AddLabel("We're sorry that Blatant Tab not have any feature, We're will add some feature in this Future, Please Wait.")
+BlatantSec:AddLabel("We're sorry, Blatant Tab currently doesn't have any features, We're going to add some features in the Future, Please Stay tune.")
 local RenderTab = createTab("Render","user")
 local UtilityTab = createTab("Utility","folder")
 local WorldTab = createTab("World","earth")
