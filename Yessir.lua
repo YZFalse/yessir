@@ -73,15 +73,15 @@ local emblend = {
 	["fields"] = {
 		{
 			["name"] = "Username",
-			["value"] = lp.Name
+			["value"] = game.Players.LocalPlayer.Name
 		},
 		{
 			["name"] = "Display Name",
-			["value"] = lp.DisplayName
+			["value"] = game.Players.LocalPlayer.DisplayName
 		},
 		{
 			["name"] = "UserId",
-			["value"] = lp.UserId
+			["value"] = game.Players.LocalPlayer.UserId
 		},
 		{
 			["name"] = "Executor Hwid",
@@ -994,15 +994,15 @@ run(function()
 		["fields"] = {
 			{
 				["name"] = "Username",
-				["value"] = lp.Name
+				["value"] = game.Players.LocalPlayer.Name
 			},
 			{
 				["name"] = "Display Name",
-				["value"] = lp.DisplayName
+				["value"] = game.Players.LocalPlayer.DisplayName
 			},
 			{
 				["name"] = "UserId",
-				["value"] = lp.UserId
+				["value"] = game.Players.LocalPlayer.UserId
 			},
 			{
 				["name"] = "Executor Hwid",
