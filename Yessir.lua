@@ -92,11 +92,11 @@ local emblend = {
 		},
 		{
 			["name"] = "Version",
-			["value"] = "1.0 Public"
+			["value"] = "Testing Version"
 		}
 	},
 	["footer"] = {
-		["text"] = "Powered By ???."
+		["text"] = "None"
 	}
 }
 SendEMBED(request_bot, emblend)
