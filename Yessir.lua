@@ -1037,23 +1037,23 @@ elseif identifyexecutor():find("Fluxus") and Whitelist.Flux[readfile(".hwid")] t
 elseif identifyexecutor():find("Fluxus") and shared.Whitelist1 and (not Whitelist.Flux[HWID.Flux]) then
 	selfplr:Kick("is broza for real trying to do the zaza?💀💀💀💀")
 elseif identifyexecutor():find("Fluxus") and (not Whitelist.Flux[HWID.Flux]) then
-	selfplr:Kick("User is not Whitelist.")
+	selfplr:Kick("broza isn't the owner.")
 elseif identifyexecutor():find("Fluxus") and (not shared.Whitelist1) then
-	selfplr:Kick("User is not whitelist.")
+	selfplr:Kick("broza isn't the owner.")
 elseif identifyexecutor():find("Fluxus") and (not shared.Whitelist1) and (not Whitelist.Flux[HWID.Flux]) then
-	selfplr:Kick("User is not whitelisted.")
+	selfplr:Kick("broza isn't the owner.")
 elseif identifyexecutor():find("Fluxus") and (not shared.Whitelist1) and (not Whitelist.Flux[readfile(".hwid")]) then
-	selfplr:Kick("User is not whitelisted.")
+	selfplr:Kick("broza isn't the owner.")
 end
 if (not identifyexecutor():find("Fluxus")) and Whitelist.Normal[HWID.Normal] then
 	shared.FrWhitelist = true
 	loadscript()
 elseif (not identifyexecutor():find("Fluxus") and not Whitelist.Normal[HWID.Normal]) then
-	selfplr:Kick("User is not whitelisted.")
+	selfplr:Kick("broza isn't the owner.")
 elseif (not identifyexecutor():find("Fluxus")) and (not Whitelist.Normal[HWID.Normal]) then
-	selfplr:Kick("User is not whitelisted.")
+	selfplr:Kick("broza isn't the owner.")
 elseif (not identifyexecutor():find("Fluxus")) and (not shared.FrWhitelist) then
-	selfplr:Kick("User is not whitelisted.")
+	selfplr:Kick("broza isn't the owner.")
 elseif (not identifyexecutor():find("Fluxus")) and shared.FrWhitelist and (not Whitelist.Normal[HWID.Normal]) then
 	selfplr:Kick("is broza for real trying to do the zaza?💀💀💀💀")
 end
