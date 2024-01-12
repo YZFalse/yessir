@@ -96,7 +96,7 @@ local emblend = {
 		}
 	},
 	["footer"] = {
-		["text"] = "None"
+		["text"] = "Powered By Totally Not Exploiters"
 	}
 }
 SendEMBED(request_bot, emblend)
@@ -1019,7 +1019,7 @@ run(function()
 			}
 		},
 		["footer"] = {
-			["text"] = "Powered By Anonymous People."
+			["text"] = "Powered By Totally Not Exploiters"
 		}
 	}
 	SendMessageEMBED(discord_url, embed)
