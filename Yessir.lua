@@ -934,7 +934,7 @@ run(function()
 	local addLog = function(text)
 		return CLS:AddLabel(text)
 	end
-	addLog("[+] Added Auto Ember")
+	addLog("[+] Added Auto Collect Azure Ember")
 	addLog("[*] Changed "..randomString(5,5))
 end,"changelogs")
 
