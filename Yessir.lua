@@ -178,8 +178,6 @@ local RemotesComm = {
 }
 local CombatTab = Window:AddTab('Combat','ads') -- [ads , list , folder , earth , locked , home , mouse , user]
 local BlatantTab = createTab("Blatant","list")
-local BlatantSec = BlatantTab:AddSection("Blatant","left")
-BlatantSec:AddLabel("We're sorry, Blatant Tab currently doesn't have any features, We're going to add some features in the Future, Please Stay tune.")
 local RenderTab = createTab("Render","user")
 local UtilityTab = createTab("Utility","folder")
 local WorldTab = createTab("World","earth")
@@ -605,13 +603,14 @@ local AntiBusy = RenderTab:AddSection("Anti Busy","right")
 --
 local AttackExploit = UtilityTab:AddSection("Fruit Exploit","right")
 local BoatFreezer = UtilityTab:AddSection("Boat Freezer","left")
-local AutoCollectEmber = UtilityTab:AddSection("Auto Ember","right")
+local KitsuneIsland = Blatant:AddSection("Kitsune Island","left")
 --]]
 
 run(function()
 	local AutoAzureEmber = false
+	local AutoPray = false
 	local AutoEmberConnection
-	AutoCollectEmber:AddToggle("Auto Collect Ember",false,function(val)
+	KitsuneExploit:AddToggle("Auto Collect Ember",false,function(val)
 		AutoAzureEmber = val
 		if AutoAzureEmber then
 			task.spawn(function()
@@ -630,7 +629,12 @@ run(function()
 			AutoEmberConnection = nil
 		end
 	end)
-end,"AutoEmber")
+	--[[
+	KitsuneIsland:AddToggle("Auto Pray",false,function()
+		
+	end)
+	--]]
+end,"KitsuneIsland")
 
 run(function()
 	local AB_Toggle = false
@@ -934,7 +938,7 @@ run(function()
 	local addLog = function(text)
 		return CLS:AddLabel(text)
 	end
-	addLog("[+] Added Auto Collect Azure Ember")
+	addLog("[+] Added Auto Ember")
 	addLog("[*] Changed "..randomString(5,5))
 end,"changelogs")
 
