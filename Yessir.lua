@@ -647,7 +647,7 @@ end,"AntiBusy")
 
 --
 run(function()
-	local ExploitMode = {"Drag", "Around", "Stuck", "Water", "Fling", "Eternal Void"}
+	local ExploitMode = {"Drag", "Around", "Stuck", "Water", "Fling", "Eternal Void", "CFrame"}
 	local SelectMode = "Drag"
 	local Types = {"Character", "Backpack"}
 	local TypeAttack = "Character"
@@ -690,6 +690,8 @@ run(function()
 			return Vector3.new(0, 9e9, 0)
 		elseif SelectMode == "Eternal Void" then
 			return Vector3.new(9e9, -9e9, 9e9)
+		elseif SelectMode == "CFrame" then
+			return CFrame.new(9e9, 9e9, 9e9)
 		end
 	end
 	AttackExploit:AddToggle("Trex Exploit", false, function(val)
