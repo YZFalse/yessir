@@ -616,7 +616,7 @@ run(function()
 		if AutoAzureEmber then
 			task.spawn(function()
 				repeat
-					task.wait()
+					task.wait(0.2)
 					replistorage.Modules.Net["RE/CollectBlueEmber"]:FireServer()
 					AutoEmberConnection = workspace.ChildAdded:Connect(function(str)
 						if str.Name == "EmberTemplate" then
