@@ -603,7 +603,7 @@ local AntiBusy = RenderTab:AddSection("Anti Busy","right")
 --
 local AttackExploit = UtilityTab:AddSection("Fruit Exploit","right")
 local BoatFreezer = UtilityTab:AddSection("Boat Freezer","left")
-local KitsuneIsland = Blatant:AddSection("Kitsune Island","left")
+local KitsuneIsland = BlatantTab:AddSection("Kitsune Island","left")
 --]]
 
 run(function()
