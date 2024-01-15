@@ -599,7 +599,7 @@ run(function()
 end,"ChangeTeam")
 
 local BringBoatExploit = UtilityTab:AddSection("Bring Boat Exploit","left")
-local AntiBusy = RenderTab:AddSection("Anti Busy","right")
+local AntiBusy = RenderTab:AddSection("Anti Butun","right")
 --
 local AttackExploit = UtilityTab:AddSection("Fruit Exploit","right")
 local BoatFreezer = UtilityTab:AddSection("Boat Freezer","left")
@@ -637,13 +637,22 @@ run(function()
 end,"KitsuneIsland")
 
 run(function()
+	local AS_Toggle = false
 	local AB_Toggle = false
 	AntiBusy:AddToggle("Anti Stun",false,function(val)
+		AS_Toggle = val
+		if AS_Toggle then
+			while AS_Toggle do
+				task.wait()
+				lplr.Character.Stun.Value = 0
+			end
+		end
+	end)
+	AntiBusy:AddToggle("Anti Busy",false,function(val)
 		AB_Toggle = val
 		if AB_Toggle then
 			while AB_Toggle do
 				task.wait()
-				lplr.Character.Stun.Value = 0
 				lplr.Character.Busy.Value = false
 			end
 		end
