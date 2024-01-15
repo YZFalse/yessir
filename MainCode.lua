@@ -601,7 +601,7 @@ end,"ChangeTeam")
 local BringBoatExploit = UtilityTab:AddSection("Bring Boat Exploit","left")
 local AntiBusy = RenderTab:AddSection("Anti Butun","right")
 --
-local AttackExploit = UtilityTab:AddSection("Fruit Exploit","right")
+local AttackExploit = BlatantTab:AddSection("Fruit Exploit","right")
 local BoatFreezer = UtilityTab:AddSection("Boat Freezer","left")
 local KitsuneIsland = BlatantTab:AddSection("Kitsune Island","left")
 --]]
