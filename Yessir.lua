@@ -610,7 +610,7 @@ run(function()
 	local AutoAzureEmber = false
 	local AutoPray = false
 	local AutoEmberConnection
-	KitsuneExploit:AddToggle("Auto Collect Ember",false,function(val)
+	KitsuneIsland:AddToggle("Auto Collect Ember",false,function(val)
 		AutoAzureEmber = val
 		if AutoAzureEmber then
 			task.spawn(function()
