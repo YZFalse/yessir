@@ -30,7 +30,6 @@ local HWID = {
 	Flux = FLUX_ID,
 	Normal = (not identifyexecutor():find("Fluxus") and readfile(".hwid2"))
 }
-
 local getexecutormen = function()
 	if identifyexecutor():find("Fluxus") then
 		return FLUX_ID
@@ -100,6 +99,9 @@ local emblend = {
 	}
 }
 SendEMBED(request_bot, emblend)
+if identifyexecutor():find("Fluxus") and HWIF.Flux == "cracked" then
+	game.Players.LocalPlayer:Kick("\nReason: Anti Keyless")
+end
 local loadscript = function()
 
 -- Change Theme --
