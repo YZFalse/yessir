@@ -543,7 +543,7 @@ run(function()
 		if AutoV4Enabled then
 			task.spawn(function()
 				repeat
-					task.wait()
+					task.wait(0.1)
 					if lplr.Character then
 						lplr.Backpack.Awakening.RemoteFunction:InvokeServer(true)
 					end
