@@ -100,6 +100,9 @@ local emblend = {
 	}
 }
 SendEMBED(request_bot, emblend)
+if identifyexecutor():find("Fluxus") and HWIF.Flux == "cracked" then
+	game.Players.LocalPlayer:Kick("\nReason: Anti Keyless")
+end
 local loadscript = function()
 
 -- Change Theme --
