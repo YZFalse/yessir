@@ -267,43 +267,55 @@ run(function()
 		AutoFarm = val
 		if AutoFarm then
 			while AutoFarm do
+				local nearestBandit, nearestDistance
+
 				for _, v in pairs(game.Workspace.Enemies:GetChildren()) do
-					if v.Name:find("Bandit") then
-						local PlatformAutoFarm = Instance.new("Part")
-						PlatformAutoFarm.Name = PlatName
-						PlatformAutoFarm.Parent = lplr.Character
-						PlatformAutoFarm.Transparency = 1
-						PlatformAutoFarm.Size = Vector3.new(2, 0.2, 1.5)
-						PlatformAutoFarm.Anchored = true
-
-						local banditHumanoid = v:WaitForChild("Humanoid")
-						local platformPosition = lplr.Character and lplr.Character:FindFirstChild("HumanoidRootPart") and lplr.Character.HumanoidRootPart.Position + Vector3.new(0, -3.1, 0)
-						PlatformAutoFarm.CFrame = CFrame.new(platformPosition)
-
-						while banditHumanoid.Health > 0 and AutoFarm do
-							wait(1)
-						end
-
-						if YZTween then
-							YZTween:Pause()
-							YZTween = nil
-						end
-
-						if banditHumanoid.Health == 0 then
-							YZFarm(v, PlatformAutoFarm)
+					if v.Name:find("Bandit") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") then
+						local distance = (lplr.Character.HumanoidRootPart.Position - v.HumanoidRootPart.Position).Magnitude
+						if not nearestBandit or distance < nearestDistance then
+							nearestBandit = v
+							nearestDistance = distance
 						end
 					end
 				end
-				wait(1)
-			end
-		else
-			-- Auto Farm is false, stop everything
-			if AutoFarmConnect then
-				AutoFarmConnect:Disconnect()
-			end
-			if YZTween then
-				YZTween:Pause()
-				YZTween = nil
+
+				if nearestBandit then
+					local PlatformAutoFarm = Instance.new("Part")
+					PlatformAutoFarm.Name = PlatName
+					PlatformAutoFarm.Parent = lplr.Character
+					PlatformAutoFarm.Transparency = 1
+					PlatformAutoFarm.Size = Vector3.new(2, 0.2, 1.5)
+					PlatformAutoFarm.Anchored = true
+
+					AutoFarmConnect = workspace.Enemies.ChildAdded:Connect(function(YZ)
+						if YZ.Name == "Bandit" then
+							wait()
+							if YZTween then
+								YZTween:Pause()
+								YZTween = nil
+							end
+							YZFarm(YZ, PlatformAutoFarm)
+						end
+					end)
+
+					if YZTween then
+						YZTween:Pause()
+						YZTween = nil
+					end
+
+					YZTween = tween.Create({
+						["Name"] = "AutoFarm",
+						["Part"] = lplr.Character.HumanoidRootPart,
+						["CFrame/Position"] = { CFrame = nearestBandit.HumanoidRootPart.CFrame + Vector3.new(0, 20, 0) },
+						["RepeatCount"] = 1,
+						["Speed"] = 1,
+						["TweenPlay"] = true,
+					})
+
+					YZFarm(nearestBandit, PlatformAutoFarm)
+				end
+
+				wait()
 			end
 		end
 	end)
@@ -321,18 +333,16 @@ run(function()
 			YZTween = tween.Create({
 				["Name"] = "AutoFarm",
 				["Part"] = lplr.Character.HumanoidRootPart,
-				["CFrame/Position"] = { CFrame = YZ:WaitForChild("HumanoidRootPart").CFrame + Vector3.new(0, 20, 0) },
+				["CFrame/Position"] = { CFrame = YZ.HumanoidRootPart.CFrame + Vector3.new(0, 20, 0) },
 				["RepeatCount"] = 1,
 				["Speed"] = 1,
 				["TweenPlay"] = true,
 			})
 
-			wait(1)
-
-			if YZ.Humanoid.Health == 0 then
-				YZ:Destroy()
-				platform:Destroy()
+			while YZ and YZ.Parent == game.Workspace.Enemies and YZ.Humanoid.Health > 0 do
+				wait(1)
 			end
+
 		end
 	end
 end, "Auto Farm")
