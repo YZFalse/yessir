@@ -309,7 +309,6 @@ run(function()
 
 		if YZ.Humanoid.Health == 0 then
 			YZ:Destroy()
-			platform:Destroy()
 		end
 		wait(1)
 	end
