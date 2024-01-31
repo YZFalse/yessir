@@ -272,7 +272,7 @@ run(function()
 						PlatformAutoFarm.Name = PlatName
 						PlatformAutoFarm.Parent = lplr.Character
 						PlatformAutoFarm.Transparency = 1
-						PlatformAutoFarm.Size = Vector3.new(2, 0.2, 1.5)
+						PlatformAutoFarm.Size = Vector3.new(12, 0.2, 12)
 						PlatformAutoFarm.Anchored = true
 
 						AutoFarmConnect = workspace.Enemies.ChildAdded:Connect(function(YZ)
