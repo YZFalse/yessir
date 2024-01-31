@@ -289,7 +289,7 @@ run(function()
 
 					AutoFarmConnect = workspace.Enemies.ChildAdded:Connect(function(YZ)
 						if YZ.Name == "Bandit" then
-							wait()
+							wait(1)
 							if YZTween then
 								YZTween:Pause()
 								YZTween = nil
@@ -312,10 +312,9 @@ run(function()
 						["TweenPlay"] = true,
 					})
 
-					YZFarm(nearestBandit, PlatformAutoFarm)
 				end
 
-				wait()
+				wait(1)
 			end
 		end
 	end)
@@ -338,10 +337,6 @@ run(function()
 				["Speed"] = 1,
 				["TweenPlay"] = true,
 			})
-
-			while YZ and YZ.Parent == game.Workspace.Enemies and YZ.Humanoid.Health > 0 do
-				wait(1)
-			end
 
 		end
 	end
