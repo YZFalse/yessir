@@ -272,7 +272,7 @@ run(function()
 						PlatformAutoFarm.Name = PlatName
 						PlatformAutoFarm.Parent = lplr.Character
 						PlatformAutoFarm.Transparency = 1
-						PlatformAutoFarm.Size = Vector3.new(12, 0.2, 12)
+						PlatformAutoFarm.Size = Vector3.new(25, 0.2, 25)
 						PlatformAutoFarm.Anchored = true
 
 						AutoFarmConnect = workspace.Enemies.ChildAdded:Connect(function(YZ)
@@ -295,7 +295,7 @@ run(function()
 			return
 		end
 
-		local platformPosition = playerRootPart.Position + Vector3.new(0, -3.1, 0)
+		local platformPosition = playerRootPart.Position + Vector3.new(0, -5, 0)
 		platform.CFrame = CFrame.new(platformPosition)
 
 		tween.Create({
