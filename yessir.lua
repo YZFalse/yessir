@@ -260,6 +260,7 @@ run(function()
 	local AutoFarmDistance = 20
 	local BringEnemies = true
 	local AutoFarmConnect
+	local playerLevel = lplr.Data.Level.Value
 	local PlatName = "AutoFarmPlatform"
 	local YZTween
 
