@@ -261,6 +261,7 @@ run(function()
 	local BringEnemies = true
 	local AutoFarmConnect
 	local PlatName = "AutoFarmPlatform"
+	local YZTween
 
 	AutoFarmSection:AddToggle("Auto Farm", false, function(val)
 		AutoFarm = val
@@ -272,14 +273,32 @@ run(function()
 						PlatformAutoFarm.Name = PlatName
 						PlatformAutoFarm.Parent = lplr.Character
 						PlatformAutoFarm.Transparency = 1
-						PlatformAutoFarm.Size = Vector3.new(25, 0.2, 25)
+						PlatformAutoFarm.Size = Vector3.new(50, 0.2, 50)
 						PlatformAutoFarm.Anchored = true
 
 						AutoFarmConnect = workspace.Enemies.ChildAdded:Connect(function(YZ)
 							if YZ.Name == "Bandit" then
+								if YZTween then
+									YZTween:Pause()
+									YZTween = nil
+								end
 								YZFarm(YZ, PlatformAutoFarm)
 							end
 						end)
+
+						if YZTween then
+							YZTween:Pause()
+							YZTween = nil
+						end
+
+						YZTween = tween.Create({
+							["Name"] = "AutoFarm",
+							["Part"] = lplr.Character.HumanoidRootPart,
+							["CFrame/Position"] = { CFrame = v.HumanoidRootPart.CFrame + Vector3.new(0, 20, 0) },
+							["RepeatCount"] = 1,
+							["Speed"] = 1,
+							["TweenPlay"] = true,
+						})
 
 						YZFarm(v, PlatformAutoFarm)
 					end
@@ -290,27 +309,30 @@ run(function()
 	end)
 
 	function YZFarm(YZ, platform)
-		local playerRootPart = lplr.Character and lplr.Character:FindFirstChild("HumanoidRootPart")
-		if not playerRootPart then
-			return
+		if YZ and YZ.Parent == game.Workspace.Enemies then
+			local playerRootPart = lplr.Character and lplr.Character:FindFirstChild("HumanoidRootPart")
+			if not playerRootPart then
+				return
+			end
+
+			local platformPosition = playerRootPart.Position + Vector3.new(0, -5, 0)
+			platform.CFrame = CFrame.new(platformPosition)
+
+			YZTween = tween.Create({
+				["Name"] = "AutoFarm",
+				["Part"] = lplr.Character.HumanoidRootPart,
+				["CFrame/Position"] = { CFrame = YZ.HumanoidRootPart.CFrame + Vector3.new(0, 20, 0) },
+				["RepeatCount"] = 1,
+				["Speed"] = 1,
+				["TweenPlay"] = true,
+			})
+
+			if YZ.Humanoid.Health == 0 then
+				YZ:Destroy()
+				platform:Destroy()
+			end
+			wait(1)
 		end
-
-		local platformPosition = playerRootPart.Position + Vector3.new(0, -5, 0)
-		platform.CFrame = CFrame.new(platformPosition)
-
-		tween.Create({
-			["Name"] = "AutoFarm",
-			["Part"] = lplr.Character.HumanoidRootPart,
-			["CFrame/Position"] = { CFrame = YZ.HumanoidRootPart.CFrame + Vector3.new(0, 20, 0) },
-			["RepeatCount"] = 1,
-			["Speed"] = 1,
-			["TweenPlay"] = false
-		})
-
-		if YZ.Humanoid.Health == 0 then
-			YZ:Destroy()
-		end
-		wait(1)
 	end
 end, "Auto Farm")
 
