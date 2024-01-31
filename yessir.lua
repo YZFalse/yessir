@@ -262,20 +262,25 @@ run(function()
 	local AutoFarmConnect
 	local PlatName = "AutoFarmPlatform"
 	local YZTween
-	local BanditList = {}
+	local BanditList = {}  -- Maintain a list of Bandits
 
 	AutoFarmSection:AddToggle("Auto Farm", false, function(val)
 		AutoFarm = val
 		if AutoFarm then
-			BanditList = game.Workspace.Enemies:GetChildren()
-			while AutoFarm and #BanditList > 0 do
-				for _, v in pairs(BanditList) do
-					if v.Name:find("Bandit") then
+			repeat
+				for _, v in pairs(game.Workspace.Enemies:GetChildren()) do
+					if v.Name:find("Bandit") and not BanditList[v] then
+						BanditList[v] = true
+					end
+				end
+
+				for bandit, _ in pairs(BanditList) do
+					if bandit and bandit.Parent == game.Workspace.Enemies then
 						local PlatformAutoFarm = Instance.new("Part")
 						PlatformAutoFarm.Name = PlatName
 						PlatformAutoFarm.Parent = lplr.Character
 						PlatformAutoFarm.Transparency = 1
-						PlatformAutoFarm.Size = Vector3.new(2, 0.2, 1.5)
+						PlatformAutoFarm.Size = Vector3.new(75, 1, 75)
 						PlatformAutoFarm.Anchored = true
 
 						AutoFarmConnect = workspace.Enemies.ChildAdded:Connect(function(YZ)
@@ -296,17 +301,20 @@ run(function()
 						YZTween = tween.Create({
 							["Name"] = "AutoFarm",
 							["Part"] = lplr.Character.HumanoidRootPart,
-							["CFrame/Position"] = { CFrame = v:WaitForChild("HumanoidRootPart").CFrame + Vector3.new(0, 20, 0) },
+							["CFrame/Position"] = { CFrame = bandit:WaitForChild("HumanoidRootPart").CFrame + Vector3.new(0, 20, 0) },
 							["RepeatCount"] = 1,
 							["Speed"] = 1,
 							["TweenPlay"] = true,
 						})
 
-						YZFarm(v, PlatformAutoFarm)
+						YZFarm(bandit, PlatformAutoFarm)
+
+						BanditList[bandit] = nil
 					end
 				end
-				wait(0.2)
-			end
+
+				wait(0.1)
+			until not AutoFarm
 		end
 	end)
 
@@ -317,7 +325,7 @@ run(function()
 				return
 			end
 
-			local platformPosition = playerRootPart.Position + Vector3.new(0, -3.1, 0)
+			local platformPosition = playerRootPart.Position + Vector3.new(0, -5, 0)
 			platform.CFrame = CFrame.new(platformPosition)
 
 			YZTween = tween.Create({
@@ -332,13 +340,11 @@ run(function()
 			if YZ.Humanoid.Health == 0 then
 				YZ:Destroy()
 				platform:Destroy()
-				table.remove(BanditList, 1)
 			end
-			wait(0.2)
+			wait(0.1)
 		end
 	end
 end, "Auto Farm")
-
 
 run(function()
 	local function start()
