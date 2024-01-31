@@ -260,55 +260,52 @@ run(function()
 	local AutoFarmDistance = 20
 	local BringEnemies = true
 	local AutoFarmConnect
-	AutoFarmSection:AddToggle("Auto Farm",false,function(val)
+	local PlatName = "AutoFarmPlatform"
+
+	AutoFarmSection:AddToggle("Auto Farm", false, function(val)
 		AutoFarm = val
 		if AutoFarm then
-			for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
-				local PlatformAutoFram = Instance.new("Part")
-				PlatformAutoFarm.Name = PlatformAutoFarmName
-				PlatformAutoFarm.Parent = lplr.Character
-				PlatformAutoFarm.Transparency = 1
-				PlatformAutoFarm.Size = Vector3.new(2,0.2,1.5)
-				PlatformAutoFarm.Anchored = true
-				PlatformAutoFarm.CFrame = lplr.Character.HumanoidRootPart.CFrame * CFrame.new(0,-3.1,0)
-				if v.Name:find("Bandit") then
-					AutoFarmConnect = workspace.Enemies.ChildAdded:Connect(function(v)
-						if v.Name == "Bandit" then
-							tween.Create({
-								["Name"] = "AutoFarm",
-								["Part"] = lplr.Character.HumanoidRootPart,
-								["CFrame/Position"] = {CFrame = v.Bandit.HumanoidRootPart.CFrame + Vector3.new(0,20,0)},
-								["RepeatCount"] = 1,
-								["Speed"] = 1,
-								["TweenPlay"] = false
-							})
-							-- v.HumanoidRootPart.CFrame = lplr.Character.HumanoidRootPart.CFrame - Vector3.new(0,-20,0)
-							if v.Bandit.Humanoid.Health == 0 then
-								v:Destroy()
+			while AutoFarm do
+				for _, v in pairs(game.Workspace.Enemies:GetChildren()) do
+					if v.Name:find("Bandit") then
+						local PlatformAutoFarm = Instance.new("Part")
+						PlatformAutoFarm.Name = PlatName
+						PlatformAutoFarm.Parent = lplr.Character
+						PlatformAutoFarm.Transparency = 1
+						PlatformAutoFarm.Size = Vector3.new(2, 0.2, 1.5)
+						PlatformAutoFarm.Anchored = true
+						PlatformAutoFarm.CFrame = lplr.Character.HumanoidRootPart.CFrame * CFrame.new(0, -3.1, 0)
+
+						AutoFarmConnect = workspace.Enemies.ChildAdded:Connect(function(YZ)
+							if YZ.Name == "Bandit" then
+								YZFarm(YZ)
 							end
-							wait(1)
-						end
-					end)
-					repeat
-						tween.Create({
-							["Name"] = "AutoFarm",
-							["Part"] = lplr.Character.HumanoidRootPart,
-							["CFrame/Position"] = {CFrame = v.HumanoidRootPart.CFrame + Vector3.new(0,20,0)},
-							["RepeatCount"] = 1,
-							["Speed"] = 1,
-							["TweenPlay"] = false
-						})
-						-- v.HumanoidRootPart.CFrame = lplr.Character.HumanoidRootPart.CFrame - Vector3.new(0,-20,0)
-						if v.Humanoid.Health == 0 then
-							v:Destroy()
-						end
-						wait(1)
-					until v.Humanoid.Health == 0 or not AutoFarm
+						end)
+
+						YZFarm(v)
+					end
 				end
+				wait(1)
 			end
 		end
 	end)
-end,"Auto Farm")
+
+	function YZFarm(YZ)
+		tween.Create({
+			["Name"] = "AutoFarm",
+			["Part"] = lplr.Character.HumanoidRootPart,
+			["CFrame/Position"] = { CFrame = YZ.HumanoidRootPart.CFrame + Vector3.new(0, 20, 0) },
+			["RepeatCount"] = 1,
+			["Speed"] = 1,
+			["TweenPlay"] = false
+		})
+
+		if YZ.Humanoid.Health == 0 then
+			YZ:Destroy()
+		end
+		wait(1)
+	end
+end, "Auto Farm")
 
 run(function()
 	local function start()
