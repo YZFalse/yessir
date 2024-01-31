@@ -273,7 +273,7 @@ run(function()
 						PlatformAutoFarm.Name = PlatName
 						PlatformAutoFarm.Parent = lplr.Character
 						PlatformAutoFarm.Transparency = 1
-						PlatformAutoFarm.Size = Vector3.new(50, 0.2, 50)
+						PlatformAutoFarm.Size = Vector3.new(2, 0.2, 1.5)
 						PlatformAutoFarm.Anchored = true
 
 						AutoFarmConnect = workspace.Enemies.ChildAdded:Connect(function(YZ)
@@ -294,7 +294,7 @@ run(function()
 						YZTween = tween.Create({
 							["Name"] = "AutoFarm",
 							["Part"] = lplr.Character.HumanoidRootPart,
-							["CFrame/Position"] = { CFrame = v.HumanoidRootPart.CFrame + Vector3.new(0, 20, 0) },
+							["CFrame/Position"] = { CFrame = v:WaitForChild("HumanoidRootPart").CFrame + Vector3.new(0, 20, 0) },
 							["RepeatCount"] = 1,
 							["Speed"] = 1,
 							["TweenPlay"] = true,
@@ -315,13 +315,13 @@ run(function()
 				return
 			end
 
-			local platformPosition = playerRootPart.Position + Vector3.new(0, -5, 0)
+			local platformPosition = playerRootPart.Position + Vector3.new(0, -3.1, 0)
 			platform.CFrame = CFrame.new(platformPosition)
 
 			YZTween = tween.Create({
 				["Name"] = "AutoFarm",
 				["Part"] = lplr.Character.HumanoidRootPart,
-				["CFrame/Position"] = { CFrame = YZ.HumanoidRootPart.CFrame + Vector3.new(0, 20, 0) },
+				["CFrame/Position"] = { CFrame = YZ:WaitForChild("HumanoidRootPart").CFrame + Vector3.new(0, 20, 0) },
 				["RepeatCount"] = 1,
 				["Speed"] = 1,
 				["TweenPlay"] = true,
@@ -331,7 +331,7 @@ run(function()
 				YZ:Destroy()
 				platform:Destroy()
 			end
-			wait()
+			wait(.5)
 		end
 	end
 end, "Auto Farm")
