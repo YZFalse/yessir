@@ -315,7 +315,7 @@ run(function()
 				return
 			end
 
-			local platformPosition = playerRootPart.Position + Vector3.new(0, -3.1, 0)
+			local platformPosition = playerRootPart.Position + Vector3.new(0, -5, 0)
 			platform.CFrame = CFrame.new(platformPosition)
 
 			YZTween = tween.Create({
