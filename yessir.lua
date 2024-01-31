@@ -277,7 +277,6 @@ run(function()
 
 						AutoFarmConnect = workspace.Enemies.ChildAdded:Connect(function(YZ)
 							if YZ.Name == "Bandit" then
-								wait(1)
 								YZFarm(YZ, PlatformAutoFarm)
 							end
 						end)
