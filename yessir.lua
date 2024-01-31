@@ -274,15 +274,15 @@ run(function()
 						PlatformAutoFarm.Transparency = 1
 						PlatformAutoFarm.Size = Vector3.new(2, 0.2, 1.5)
 						PlatformAutoFarm.Anchored = true
-						PlatformAutoFarm.CFrame = lplr.Character.HumanoidRootPart.CFrame * CFrame.new(0, -3.1, 0)
 
 						AutoFarmConnect = workspace.Enemies.ChildAdded:Connect(function(YZ)
 							if YZ.Name == "Bandit" then
-								YZFarm(YZ)
+								wait(1)
+								YZFarm(YZ, PlatformAutoFarm)
 							end
 						end)
 
-						YZFarm(v)
+						YZFarm(v, PlatformAutoFarm)
 					end
 				end
 				wait(1)
@@ -290,7 +290,15 @@ run(function()
 		end
 	end)
 
-	function YZFarm(YZ)
+	function YZFarm(YZ, platform)
+		local playerRootPart = lplr.Character and lplr.Character:FindFirstChild("HumanoidRootPart")
+		if not playerRootPart then
+			return
+		end
+
+		local platformPosition = playerRootPart.Position + Vector3.new(0, -3.1, 0)
+		platform.CFrame = CFrame.new(platformPosition)
+
 		tween.Create({
 			["Name"] = "AutoFarm",
 			["Part"] = lplr.Character.HumanoidRootPart,
@@ -302,6 +310,7 @@ run(function()
 
 		if YZ.Humanoid.Health == 0 then
 			YZ:Destroy()
+			platform:Destroy()
 		end
 		wait(1)
 	end
