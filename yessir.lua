@@ -262,59 +262,51 @@ run(function()
 	local AutoFarmConnect
 	local PlatName = "AutoFarmPlatform"
 	local YZTween
-	local BanditList = {}  -- Maintain a list of Bandits
 
 	AutoFarmSection:AddToggle("Auto Farm", false, function(val)
 		AutoFarm = val
 		if AutoFarm then
-			repeat
+			while AutoFarm do
 				for _, v in pairs(game.Workspace.Enemies:GetChildren()) do
-					if v.Name:find("Bandit") and not BanditList[v] then
-						BanditList[v] = true
-					end
-				end
-
-				for bandit, _ in pairs(BanditList) do
-					if bandit and bandit.Parent == game.Workspace.Enemies then
+					if v.Name:find("Bandit") then
 						local PlatformAutoFarm = Instance.new("Part")
 						PlatformAutoFarm.Name = PlatName
 						PlatformAutoFarm.Parent = lplr.Character
 						PlatformAutoFarm.Transparency = 1
-						PlatformAutoFarm.Size = Vector3.new(75, 1, 75)
+						PlatformAutoFarm.Size = Vector3.new(100, 1, 100)
 						PlatformAutoFarm.Anchored = true
 
-						AutoFarmConnect = workspace.Enemies.ChildAdded:Connect(function(YZ)
-							if YZ.Name == "Bandit" then
-								if YZTween then
-									YZTween:Pause()
-									YZTween = nil
-								end
-								YZFarm(YZ, PlatformAutoFarm)
+						local banditHumanoid = v:WaitForChild("Humanoid")
+
+						while banditHumanoid.Health > 0 and AutoFarm do
+							local playerRootPart = lplr.Character and lplr.Character:FindFirstChild("HumanoidRootPart")
+							if playerRootPart then
+								local platformPosition = playerRootPart.Position + Vector3.new(0, -5, 0)
+								platform.CFrame = CFrame.new(platformPosition)
 							end
-						end)
+							wait(1)
+						end
 
 						if YZTween then
 							YZTween:Pause()
 							YZTween = nil
 						end
 
-						YZTween = tween.Create({
-							["Name"] = "AutoFarm",
-							["Part"] = lplr.Character.HumanoidRootPart,
-							["CFrame/Position"] = { CFrame = bandit:WaitForChild("HumanoidRootPart").CFrame + Vector3.new(0, 20, 0) },
-							["RepeatCount"] = 1,
-							["Speed"] = 1,
-							["TweenPlay"] = true,
-						})
-
-						YZFarm(bandit, PlatformAutoFarm)
-
-						BanditList[bandit] = nil
+						if banditHumanoid.Health == 0 then
+							YZFarm(v, PlatformAutoFarm)
+						end
 					end
 				end
-
 				wait(0.1)
-			until not AutoFarm
+			end
+		else
+			if AutoFarmConnect then
+				AutoFarmConnect:Disconnect()
+			end
+			if YZTween then
+				YZTween:Pause()
+				YZTween = nil
+			end
 		end
 	end)
 
@@ -337,11 +329,12 @@ run(function()
 				["TweenPlay"] = true,
 			})
 
+			wait(1)
+
 			if YZ.Humanoid.Health == 0 then
 				YZ:Destroy()
 				platform:Destroy()
 			end
-			wait(0.1)
 		end
 	end
 end, "Auto Farm")
