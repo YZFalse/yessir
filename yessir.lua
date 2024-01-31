@@ -277,13 +277,10 @@ run(function()
 						PlatformAutoFarm.Anchored = true
 
 						local banditHumanoid = v:WaitForChild("Humanoid")
+						local platformPosition = lplr.Character and lplr.Character:FindFirstChild("HumanoidRootPart") and lplr.Character.HumanoidRootPart.Position + Vector3.new(0, -3.1, 0)
+						PlatformAutoFarm.CFrame = CFrame.new(platformPosition)
 
 						while banditHumanoid.Health > 0 and AutoFarm do
-							local playerRootPart = lplr.Character and lplr.Character:FindFirstChild("HumanoidRootPart")
-							if playerRootPart then
-								local platformPosition = playerRootPart.Position + Vector3.new(0, -3.1, 0)
-								PlatformAutoFarm.CFrame = CFrame.new(platformPosition)
-							end
 							wait(1)
 						end
 
@@ -300,6 +297,7 @@ run(function()
 				wait(1)
 			end
 		else
+			-- Auto Farm is false, stop everything
 			if AutoFarmConnect then
 				AutoFarmConnect:Disconnect()
 			end
@@ -322,7 +320,7 @@ run(function()
 
 			YZTween = tween.Create({
 				["Name"] = "AutoFarm",
-				["Part"] = platform,
+				["Part"] = lplr.Character.HumanoidRootPart,
 				["CFrame/Position"] = { CFrame = YZ:WaitForChild("HumanoidRootPart").CFrame + Vector3.new(0, 20, 0) },
 				["RepeatCount"] = 1,
 				["Speed"] = 1,
