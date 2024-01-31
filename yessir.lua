@@ -282,7 +282,7 @@ run(function()
 							local playerRootPart = lplr.Character and lplr.Character:FindFirstChild("HumanoidRootPart")
 							if playerRootPart then
 								local platformPosition = playerRootPart.Position + Vector3.new(0, -5, 0)
-								platform.CFrame = CFrame.new(platformPosition)
+								PlatformAutoFarm.CFrame = CFrame.new(platformPosition)
 							end
 							wait(1)
 						end
@@ -318,7 +318,7 @@ run(function()
 			end
 
 			local platformPosition = playerRootPart.Position + Vector3.new(0, -5, 0)
-			platform.CFrame = CFrame.new(platformPosition)
+			PlatformAutoFarm.CFrame = CFrame.new(platformPosition)
 
 			YZTween = tween.Create({
 				["Name"] = "AutoFarm",
