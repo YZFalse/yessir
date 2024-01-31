@@ -318,7 +318,7 @@ run(function()
 			end
 
 			local platformPosition = playerRootPart.Position + Vector3.new(0, -5, 0)
-			PlatformAutoFarm.CFrame = CFrame.new(platformPosition)
+			platform.CFrame = CFrame.new(platformPosition)
 
 			YZTween = tween.Create({
 				["Name"] = "AutoFarm",
