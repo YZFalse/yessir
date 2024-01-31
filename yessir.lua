@@ -317,7 +317,7 @@ run(function()
 
 			YZTween = tween.Create({
 				["Name"] = "AutoFarm",
-				["Part"] = lplr.Character.HumanoidRootPart,
+				["Part"] = platform,
 				["CFrame/Position"] = { CFrame = YZ:WaitForChild("HumanoidRootPart").CFrame + Vector3.new(0, 20, 0) },
 				["RepeatCount"] = 1,
 				["Speed"] = 1,
