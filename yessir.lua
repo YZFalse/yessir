@@ -273,17 +273,12 @@ run(function()
 						PlatformAutoFarm.Name = PlatName
 						PlatformAutoFarm.Parent = lplr.Character
 						PlatformAutoFarm.Transparency = 1
-						PlatformAutoFarm.Size = Vector3.new(100, 1, 100)
+						PlatformAutoFarm.Size = Vector3.new(2, 0.2, 1.5)
 						PlatformAutoFarm.Anchored = true
 
 						local banditHumanoid = v:WaitForChild("Humanoid")
 
 						while banditHumanoid.Health > 0 and AutoFarm do
-							local playerRootPart = lplr.Character and lplr.Character:FindFirstChild("HumanoidRootPart")
-							if playerRootPart then
-								local platformPosition = playerRootPart.Position + Vector3.new(0, -5, 0)
-								PlatformAutoFarm.CFrame = CFrame.new(platformPosition)
-							end
 							wait(1)
 						end
 
@@ -297,7 +292,7 @@ run(function()
 						end
 					end
 				end
-				wait(0.1)
+				wait(1)
 			end
 		else
 			if AutoFarmConnect then
@@ -317,7 +312,7 @@ run(function()
 				return
 			end
 
-			local platformPosition = playerRootPart.Position + Vector3.new(0, -5, 0)
+			local platformPosition = playerRootPart.Position + Vector3.new(0, -3.1, 0)
 			platform.CFrame = CFrame.new(platformPosition)
 
 			YZTween = tween.Create({
