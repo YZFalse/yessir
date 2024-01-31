@@ -303,7 +303,7 @@ run(function()
 						YZFarm(v, PlatformAutoFarm)
 					end
 				end
-				wait(1)
+				wait()
 			end
 		end
 	end)
@@ -331,7 +331,7 @@ run(function()
 				YZ:Destroy()
 				platform:Destroy()
 			end
-			wait(1)
+			wait()
 		end
 	end
 end, "Auto Farm")
