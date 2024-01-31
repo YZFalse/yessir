@@ -279,6 +279,11 @@ run(function()
 						local banditHumanoid = v:WaitForChild("Humanoid")
 
 						while banditHumanoid.Health > 0 and AutoFarm do
+							local playerRootPart = lplr.Character and lplr.Character:FindFirstChild("HumanoidRootPart")
+							if playerRootPart then
+								local platformPosition = playerRootPart.Position + Vector3.new(0, -3.1, 0)
+								PlatformAutoFarm.CFrame = CFrame.new(platformPosition)
+							end
 							wait(1)
 						end
 
