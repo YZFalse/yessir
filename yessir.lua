@@ -260,17 +260,16 @@ run(function()
 	local AutoFarmDistance = 20
 	local BringEnemies = true
 	local AutoFarmConnect
+	local playerLevel = lplr.Data.Level.Value
 	local PlatName = "AutoFarmPlatform"
 	local YZTween
-	local BanditList = {}
 
 	AutoFarmSection:AddToggle("Auto Farm", false, function(val)
 		AutoFarm = val
 		if AutoFarm then
-			BanditList = game.Workspace.Enemies:GetChildren()
-			while AutoFarm and #BanditList > 0 do
-				for _, v in pairs(BanditList) do
-					if v.Name:find("Bandit") then
+			while AutoFarm do
+				for _, v in pairs(game.Workspace.Enemies:GetChildren()) do
+					if v.Name:find("Bandit") and playerLevel < 10 or (not playerLevel == 10) then
 						local PlatformAutoFarm = Instance.new("Part")
 						PlatformAutoFarm.Name = PlatName
 						PlatformAutoFarm.Parent = lplr.Character
@@ -305,7 +304,7 @@ run(function()
 						YZFarm(v, PlatformAutoFarm)
 					end
 				end
-				wait(0.2)
+				wait(0.5)
 			end
 		end
 	end)
@@ -332,9 +331,8 @@ run(function()
 			if YZ.Humanoid.Health == 0 then
 				YZ:Destroy()
 				platform:Destroy()
-				table.remove(BanditList, 1)
 			end
-			wait(0.2)
+			wait(0.3)
 		end
 	end
 end, "Auto Farm")
